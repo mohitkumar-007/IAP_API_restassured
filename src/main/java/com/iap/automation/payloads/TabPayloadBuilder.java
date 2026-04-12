@@ -26,6 +26,23 @@ public class TabPayloadBuilder {
         return payload;
     }
 
+    public static Map<String, Object> buildCoinsTabPayload(String tabName, String productId) {
+        Map<String, Object> payload = new LinkedHashMap<>();
+        payload.put("tabType", "coins");
+        payload.put("tabName", tabName);
+        payload.put("deepLink", "");
+        payload.put("platform", List.of("apk", "psrmg", "ipa"));
+        payload.put("productId", productId);
+        payload.put("segmentWiseDetails", buildSegmentWiseDetails());
+        payload.put("howItWorks", buildHowItWorks());
+        payload.put("showCompareView", true);
+        payload.put("showSocialProofing", true);
+        payload.put("lastXHours", 6);
+        payload.put("socialProofX", 100);
+        payload.put("socialProofY", "3");
+        return payload;
+    }
+
     public static Map<String, Object> buildUpdateTabPayload(String mongoId, int tabId,
                                                              String tabName, String productId) {
         Map<String, Object> payload = buildGemsTabPayload(tabName, productId);

@@ -41,7 +41,8 @@ public class TestReportGenerator {
     public String generateHtmlReport() {
         LocalDateTime endTime = LocalDateTime.now();
         String timestamp = endTime.format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
-        String fileName = "gems-e2e-report_" + timestamp + ".html";
+        String sanitized = reportTitle.toLowerCase().replaceAll("[^a-z0-9]+", "-").replaceAll("^-|-$", "");
+        String fileName = sanitized + "_" + timestamp + ".html";
 
         Path reportDir = Paths.get("reports");
         try {
@@ -134,7 +135,7 @@ public class TestReportGenerator {
         html.append("</tbody>\n</table>\n");
 
         // Footer
-        html.append("<div class=\"footer\">IAP API Automation — Gems Pack E2E Report — Generated automatically</div>\n");
+        html.append("<div class=\"footer\">IAP API Automation — ").append(reportTitle).append(" — Generated automatically</div>\n");
         html.append("</body>\n</html>");
 
         try {
@@ -152,18 +153,22 @@ public class TestReportGenerator {
         long failCount = steps.stream().filter(s -> "FAIL".equals(s.status)).count();
         long skipCount = steps.stream().filter(s -> "SKIP".equals(s.status)).count();
 
-        logger.info("╔══════════════════════════════════════════════════════════╗");
-        logger.info("║             GEMS PACK E2E — EXECUTION SUMMARY           ║");
-        logger.info("╠══════════════════════════════════════════════════════════╣");
+        String upperTitle = reportTitle.toUpperCase();
+        String headerLine = "  " + upperTitle + " — EXECUTION SUMMARY  ";
+        int boxWidth = Math.max(58, headerLine.length() + 2);
+        String border = "═".repeat(boxWidth);
+        logger.info("╔{}╗", border);
+        logger.info("║{}║", String.format("%-" + boxWidth + "s", headerLine));
+        logger.info("╠{}╣", border);
 
         for (Map.Entry<String, String> entry : summaryData.entrySet()) {
             logger.info("║  {}: {}", String.format("%-20s", entry.getKey()), entry.getValue());
         }
 
-        logger.info("╠══════════════════════════════════════════════════════════╣");
+        logger.info("╠{}╣", border);
         logger.info("║  PASS: {}  |  FAIL: {}  |  SKIP: {}  |  TOTAL: {}",
                 passCount, failCount, skipCount, steps.size());
-        logger.info("╠══════════════════════════════════════════════════════════╣");
+        logger.info("╠{}╣", border);
 
         for (StepResult s : steps) {
             String icon = switch (s.status) {
@@ -176,7 +181,7 @@ public class TestReportGenerator {
             logger.info("║  {} [{}] {} — {}", icon, s.stepId, s.description, s.details);
         }
 
-        logger.info("╚══════════════════════════════════════════════════════════╝");
+        logger.info("╚{}╝", border);
     }
 
     private record StepResult(String stepId, String description, String status, String details,

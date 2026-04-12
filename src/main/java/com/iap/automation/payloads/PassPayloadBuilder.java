@@ -84,7 +84,7 @@ public class PassPayloadBuilder {
     }
 
     /**
-     * Build an update payload for an existing pass. Includes passId and mongo id.
+     * Build an update payload for an existing Gems pass.
      */
     public static Map<String, Object> buildUpdatePassPayload(String mongoId, int passId, String updatedName,
                                                               int tabId, int rank, int grossPrice,
@@ -92,6 +92,86 @@ public class PassPayloadBuilder {
                                                               String passImageUrl, String bestValueTagText,
                                                               String billingProductId) {
         Map<String, Object> payload = buildGemsPassPayload(updatedName, tabId, rank, grossPrice, gemsAmount, initialAmount, passImageUrl, bestValueTagText, billingProductId);
+        payload.put("id", mongoId);
+        payload.put("passId", passId);
+        payload.put("deleted", false);
+        return payload;
+    }
+
+    /**
+     * Build a Coins pass creation payload.
+     *
+     * @param passName       Unique pass name
+     * @param tabId          Tab ID to associate the pass with
+     * @param rank           Display rank/order of the pass
+     * @param grossPrice     Original price
+     * @param coinsAmount    Total coins amount in the offering
+     * @param initialAmount  Initial coins unlocked immediately
+     */
+    public static Map<String, Object> buildCoinsPassPayload(String passName, int tabId, int rank,
+                                                             int grossPrice, int coinsAmount, int initialAmount,
+                                                             String passImageUrl, String bestValueTagText,
+                                                             String billingProductId) {
+        Map<String, Object> payload = new LinkedHashMap<>();
+        payload.put("name", passName);
+        payload.put("adminDisplayName", passName);
+        payload.put("grossPrice", grossPrice);
+        payload.put("productId", "RUMMY");
+        payload.put("discountedPrice", grossPrice - 10);
+        payload.put("validity", 1);
+        payload.put("rank", rank);
+
+        long now = Instant.now().toEpochMilli();
+        long thirtyDaysLater = now + (30L * 24 * 60 * 60 * 1000);
+        long ninetyDaysLater = now + (90L * 24 * 60 * 60 * 1000);
+
+        payload.put("discountStartDate", now);
+        payload.put("discountEndDate", thirtyDaysLater);
+        payload.put("passStartDate", now);
+        payload.put("passEndDate", ninetyDaysLater);
+        payload.put("passImageUrl", passImageUrl);
+        payload.put("showBestValueTag", bestValueTagText != null && !bestValueTagText.isEmpty());
+        payload.put("bestValueTagText", bestValueTagText != null ? bestValueTagText : "");
+        payload.put("passSaleEnabled", true);
+        payload.put("segmentWiseDetails", buildPassSegmentDetails());
+        payload.put("renewNudgeBeforeExpiryInDays", 3);
+        payload.put("renewNudgeAfterExpiryInDays", 7);
+        payload.put("tabId", tabId);
+        payload.put("tabType", "coins");
+
+        // Coins offering details
+        Map<String, Object> offeringDetails = new LinkedHashMap<>();
+        Map<String, Object> offering = new LinkedHashMap<>();
+        offering.put("type", "COINS");
+        offering.put("description", "Coins pass with " + coinsAmount + " coins");
+        offering.put("amount", coinsAmount);
+        offering.put("initialAmount", initialAmount);
+        offeringDetails.put("offerings", List.of(offering));
+        payload.put("offeringDetails", offeringDetails);
+
+        payload.put("passCatchPhrase", "BIG REWARDS");
+
+        // Billing details
+        Map<String, Object> billingDetails = new LinkedHashMap<>();
+        billingDetails.put("GOOGLE", Map.of("billingProductId", billingProductId, "fee", (double) grossPrice));
+        billingDetails.put("APPLE", Map.of("billingProductId", billingProductId, "fee", (double) grossPrice + 20));
+        payload.put("billingDetails", billingDetails);
+
+        payload.put("tags", "COINS PACK");
+        payload.put("renewalType", "ONE_TIME");
+
+        return payload;
+    }
+
+    /**
+     * Build an update payload for an existing Coins pass.
+     */
+    public static Map<String, Object> buildUpdateCoinsPassPayload(String mongoId, int passId, String updatedName,
+                                                                   int tabId, int rank, int grossPrice,
+                                                                   int coinsAmount, int initialAmount,
+                                                                   String passImageUrl, String bestValueTagText,
+                                                                   String billingProductId) {
+        Map<String, Object> payload = buildCoinsPassPayload(updatedName, tabId, rank, grossPrice, coinsAmount, initialAmount, passImageUrl, bestValueTagText, billingProductId);
         payload.put("id", mongoId);
         payload.put("passId", passId);
         payload.put("deleted", false);
