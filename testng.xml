@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="IAP API Automation Suite" verbose="2">
+
+    <test name="Gems Pass E2E Chaining Test">
+        <classes>
+            <class name="com.iap.automation.tests.GemsPassE2ETest"/>
+        </classes>
+    </test>
+
+</suite>
