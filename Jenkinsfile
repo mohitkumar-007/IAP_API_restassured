@@ -62,6 +62,9 @@ pipeline {
 
     post {
         always {
+            // 1. Grab your custom reports from the new folder
+            archiveArtifacts artifacts: 'reports/*.html', allowEmptyArchive: true
+
             // Archive custom HTML reports
             archiveArtifacts artifacts: 'target/surefire-reports/*.html', allowEmptyArchive: true
 
