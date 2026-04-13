@@ -326,13 +326,13 @@ public class TournamentPassE2ETest extends BaseTest {
             List<Map<String, Object>> offerings = new ArrayList<>();
             switch (offeringType) {
                 case "TOURNAMENT_ONLY":
-                    offerings.add(PassPayloadBuilder.buildTournamentOffering(1000, List.of(1, 2)));
+                    offerings.add(PassPayloadBuilder.buildTournamentOffering(1000, List.of(6003, 6004)));
                     break;
                 case "ADFREE_ONLY":
                     offerings.add(PassPayloadBuilder.buildAdFreeOffering());
                     break;
                 case "TOURNAMENT_ADFREE":
-                    offerings.add(PassPayloadBuilder.buildTournamentOffering(1000, List.of(1, 2)));
+                    offerings.add(PassPayloadBuilder.buildTournamentOffering(1000, List.of(6003, 6004)));
                     offerings.add(PassPayloadBuilder.buildAdFreeOffering());
                     break;
             }
@@ -492,13 +492,13 @@ public class TournamentPassE2ETest extends BaseTest {
             List<Map<String, Object>> offerings = new ArrayList<>();
             switch (offeringType) {
                 case "TOURNAMENT_ONLY":
-                    offerings.add(PassPayloadBuilder.buildTournamentOffering(1000, List.of(1, 2)));
+                    offerings.add(PassPayloadBuilder.buildTournamentOffering(1000, List.of(6003, 6004)));
                     break;
                 case "ADFREE_ONLY":
                     offerings.add(PassPayloadBuilder.buildAdFreeOffering());
                     break;
                 case "TOURNAMENT_ADFREE":
-                    offerings.add(PassPayloadBuilder.buildTournamentOffering(1000, List.of(1, 2)));
+                    offerings.add(PassPayloadBuilder.buildTournamentOffering(1000, List.of(6003, 6004)));
                     offerings.add(PassPayloadBuilder.buildAdFreeOffering());
                     break;
             }
@@ -556,13 +556,13 @@ public class TournamentPassE2ETest extends BaseTest {
             List<Map<String, Object>> offerings = new ArrayList<>();
             switch (offeringType) {
                 case "TOURNAMENT_ONLY":
-                    offerings.add(PassPayloadBuilder.buildTournamentOffering(1000, List.of(1, 2)));
+                    offerings.add(PassPayloadBuilder.buildTournamentOffering(1000, List.of(6003, 6004)));
                     break;
                 case "ADFREE_ONLY":
                     offerings.add(PassPayloadBuilder.buildAdFreeOffering());
                     break;
                 case "TOURNAMENT_ADFREE":
-                    offerings.add(PassPayloadBuilder.buildTournamentOffering(1000, List.of(1, 2)));
+                    offerings.add(PassPayloadBuilder.buildTournamentOffering(1000, List.of(6003, 6004)));
                     offerings.add(PassPayloadBuilder.buildAdFreeOffering());
                     break;
             }
@@ -621,13 +621,13 @@ public class TournamentPassE2ETest extends BaseTest {
             List<Map<String, Object>> offerings = new ArrayList<>();
             switch (offeringType) {
                 case "TOURNAMENT_ONLY":
-                    offerings.add(PassPayloadBuilder.buildTournamentOffering(1000, List.of(1, 2)));
+                    offerings.add(PassPayloadBuilder.buildTournamentOffering(1000, List.of(6003, 6004)));
                     break;
                 case "ADFREE_ONLY":
                     offerings.add(PassPayloadBuilder.buildAdFreeOffering());
                     break;
                 case "TOURNAMENT_ADFREE":
-                    offerings.add(PassPayloadBuilder.buildTournamentOffering(1000, List.of(1, 2)));
+                    offerings.add(PassPayloadBuilder.buildTournamentOffering(1000, List.of(6003, 6004)));
                     offerings.add(PassPayloadBuilder.buildAdFreeOffering());
                     break;
             }
