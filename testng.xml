@@ -8,4 +8,10 @@
         </classes>
     </test>
 
+    <test name="Coins Pass E2E Chaining Test">
+        <classes>
+            <class name="com.iap.automation.tests.CoinsPassE2ETest"/>
+        </classes>
+    </test>
+
 </suite>

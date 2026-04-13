@@ -58,10 +58,10 @@ public class GemsPassE2ETest extends BaseTest {
 
     // Pass configs: displayName, grossPrice, gemsAmount, initialAmount, passImageUrl, bestValueTagText, billingProductId
     private static final Object[][] PASS_CONFIGS = {
-            {"Gems Pack 1000", 50,  1000,  500, "https://rummy-assets.jungleerummy.com/Content/versioned/2.0.0.1/images/version4/promotion_november_25/zenrik_images/image-%2816%29-17641481189062.webp?v=1764148119", "", "coins_1"},
-            {"Gems Pack 2000", 100, 2000, 1000, "https://rummy-assets.jungleerummy.com/Content/versioned/2.0.0.1/images/version4/promotion_november_25/zenrik_images/image-%2815%29-17641480806403.webp?v=1764148081", "", "coins_2"},
-            {"Gems Pack 3000", 200, 3000, 1500, "https://rummy-assets.jungleerummy.com/Content/versioned/2.0.0.1/images/version4/promotion_november_25/zenrik_images/image-%2814%29-17641480323971.webp?v=1764148032", "Most Popular", "coins_3"},
-            {"Gems Pack 5000", 500, 5000, 2500, "https://rummy-assets.jungleerummy.com/Content/versioned/2.0.0.1/images/version4/promotion_november_25/zenrik_images/image-%2811%29-17641479985932.webp?v=1764147999", "Hot Deal", "coins_4"}
+            {"Gems Pack 75", 50,  1000,  500, "https://rummy-assets.jungleerummy.com/Content/versioned/2.0.0.1/images/version4/promotion_november_25/zenrik_images/image-%2816%29-17641481189062.webp?v=1764148119", "", "coins_1"},
+            {"Gems Pack 125", 100, 2000, 1000, "https://rummy-assets.jungleerummy.com/Content/versioned/2.0.0.1/images/version4/promotion_november_25/zenrik_images/image-%2815%29-17641480806403.webp?v=1764148081", "", "coins_2"},
+            {"Gems Pack 225", 200, 3000, 1500, "https://rummy-assets.jungleerummy.com/Content/versioned/2.0.0.1/images/version4/promotion_november_25/zenrik_images/image-%2814%29-17641480323971.webp?v=1764148032", "Most Popular", "coins_3"},
+            {"Gems Pack 525", 500, 5000, 2500, "https://rummy-assets.jungleerummy.com/Content/versioned/2.0.0.1/images/version4/promotion_november_25/zenrik_images/image-%2811%29-17641479985932.webp?v=1764147999", "Hot Deal", "coins_4"}
     };
 
     private static final int PRICE_UPDATE_INCREASE = 25;
