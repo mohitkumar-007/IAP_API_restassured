@@ -4,7 +4,7 @@ pipeline {
     parameters {
         choice(
             name: 'TEST_SUITE',
-            choices: ['all', 'gems', 'coins'],
+            choices: ['all', 'gems', 'coins', 'tournament'],
             description: 'Which test suite to run'
         )
         string(
@@ -57,8 +57,11 @@ pipeline {
                         case 'coins':
                             testArg = '-Dtest="CoinsPassE2ETest"'
                             break
+                        case 'tournament':
+                            testArg = '-Dtest="TournamentPassE2ETest"'
+                            break
                         default:
-                            // runs full testng.xml (both suites)
+                            // runs full testng.xml (all suites)
                             testArg = ''
                             break
                     }

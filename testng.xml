@@ -14,4 +14,10 @@
         </classes>
     </test>
 
+    <test name="Tournament Pass E2E Chaining Test">
+        <classes>
+            <class name="com.iap.automation.tests.TournamentPassE2ETest"/>
+        </classes>
+    </test>
+
 </suite>
