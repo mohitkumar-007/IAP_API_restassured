@@ -78,6 +78,22 @@ pipeline {
             //allure includeProperties: false,
               //     jdk: '',
                  //  results: [[path: 'allure-results']]
+
+        emailext(
+                to: 'mohit.kumar@jungleegames.com', // Replace with real emails
+                subject: "IAP API Automation Report: ${currentBuild.fullDisplayName} - ${currentBuild.currentResult}",
+                body: """
+                    <h3>IAP (Gems/Coins/Tournament Subscription)API Test Execution Complete</h3>
+                    <p>Hello Team,</p>
+                    <p>The automated IAP API tests for Coins, Gems, and Tournament Subscription have finished running.</p>
+                    <p><strong>Final Status:</strong> ${currentBuild.currentResult}</p>
+                    <p>Please find the detailed HTML test reports attached to this email.</p>
+                    <p>You can also view the full build logs directly on Jenkins here: <br>
+                    <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
+                """,
+                mimeType: 'text/html',
+                attachmentsPattern: 'reports/*.html' // This grabs your custom reports!
+            )         
         }
         success {
             echo '✅ All tests PASSED!'
