@@ -63,7 +63,7 @@ pipeline {
     post {
         always {
             // Archive custom HTML reports
-            archiveArtifacts artifacts: '*.html', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'target/surefire-reports/*.html', allowEmptyArchive: true
 
             // Archive TestNG XML results
             archiveArtifacts artifacts: 'target/surefire-reports/**', allowEmptyArchive: true
