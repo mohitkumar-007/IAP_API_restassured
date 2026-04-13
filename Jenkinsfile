@@ -72,9 +72,9 @@ pipeline {
             junit testResults: 'target/surefire-reports/junitreports/*.xml', allowEmptyResults: true
 
             // Publish Allure report (requires Allure Jenkins Plugin)
-            allure includeProperties: false,
-                   jdk: '',
-                   results: [[path: 'allure-results']]
+            //allure includeProperties: false,
+              //     jdk: '',
+                 //  results: [[path: 'allure-results']]
         }
         success {
             echo '✅ All tests PASSED!'
