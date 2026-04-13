@@ -25,6 +25,14 @@ pipeline {
     }
 
     stages {
+        // ADD THIS NEW STAGE FIRST
+        stage('Clean Old Reports') {
+            steps {
+                // This deletes the contents of the reports and target folders
+                // so old historical files don't pile up!
+                sh 'rm -rf reports/* target/*'
+            }
+        }
 
         stage('Checkout') {
             steps {
