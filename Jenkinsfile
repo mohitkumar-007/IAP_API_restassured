@@ -91,7 +91,7 @@ pipeline {
                  //  results: [[path: 'allure-results']]
 
         emailext(
-                to: 'mohit.kumar@jungleegames.com, mayank@jungleegames.com, lakshay@jungleegames.com',
+                to: 'mohit.kumar@jungleegames.com, mayank@jungleegames.com, lakshay@jungleegames.com, nishant.kashyap@jungleegames.com',
                 subject: "IAP API Automation Report: ${currentBuild.fullDisplayName} - ${currentBuild.currentResult}",
                 body: """
                     <h3>IAP (Gems/Coins/Tournament Subscription)API Test Execution Complete</h3>
